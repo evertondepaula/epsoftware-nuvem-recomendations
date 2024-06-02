@@ -1,0 +1,41 @@
+# Group Recomendations
+Recurso responsavel por recoemndar itens para compras.
+
+## Get Recomendations [/recomendations/{sku}]
+Recebe o SKU de um produto e com base nos dados de vendas armazenados recomenda itens relacionados.<br>
+Este recurso leva em consideração a data atual como base de pesquisa, ou seja, ao informar `months=2`, será pesquisado apenas as vendas entre os dois meses anteriores a data atual até a data atual.
+
+### Get Recomendations [GET]
+
+**AVAILABLE FIELDS**
+Param  | Type      | Validation                                 | Description
+-------|-----------|--------------------------------------------|-----------------------------------------------------
+months | `integer` | `nullable|integer|`<br>`min:2|max:12`      | Quantidade de meses a serem utilizados como base de pesquisa (utiliza-se do `created_at` da venda)
+limit  | `integer` | `nullable|integer|`<br>`min:1|max:10`      | Limit de recomendações a serem retornadas
+
++ Parameters
+    + sku: (string|required) - SKU do item que se deseja recomendações relacionadas.
+
++ Response 200 (application/json)
+    {
+        "data": [
+            {
+                "sku": "<item-sku>",
+                "name": "<item-name>",
+                "count": "<item-count>"
+            }
+        ]
+    }
+
++ Response 422 (application/json)
+    {
+        "message": "The given data was invalid",
+        "errors": {
+            "months": [
+                "The months field is not valid."
+            ],
+            "limit": [
+                "The limit field is not valid."
+            ]
+        }
+    }

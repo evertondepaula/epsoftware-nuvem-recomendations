@@ -1,0 +1,166 @@
+<?php
+$coverage = new SebastianBergmann\CodeCoverage\CodeCoverage;
+$coverage->setData(array (
+  '/var/www/nuvem/app/Services/OrderManager.php' => 
+  array (
+    14 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    16 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    17 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    19 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    21 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    22 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    23 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    24 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    25 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    26 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    27 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    29 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    31 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    34 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    35 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    37 => 
+    array (
+      0 => 'Tests\\Unit\\OrderManagerTest::testOrderCreate',
+      1 => 'Tests\\Unit\\OrderManagerTest::testSumOrderCreated',
+      2 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    38 => NULL,
+  ),
+  '/var/www/nuvem/app/Services/RecomendationManager.php' => 
+  array (
+    14 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    15 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    16 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    17 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    19 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    21 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    23 => 
+    array (
+      0 => 'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation',
+    ),
+    24 => NULL,
+  ),
+));
+$coverage->setTests(array (
+  'UNCOVERED_FILES_FROM_WHITELIST' => 
+  array (
+    'size' => 'unknown',
+    'status' => -1,
+  ),
+  'Tests\\Unit\\OrderManagerTest::testOrderCreate' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'Tests\\Unit\\OrderManagerTest::testSumOrderCreated' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'Tests\\Unit\\RecomendationManagerTest::testGetRecomendation' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+));
+
+$filter = $coverage->filter();
+$filter->setWhitelistedFiles(array (
+  '/var/www/nuvem/app/Services/OrderManager.php' => true,
+  '/var/www/nuvem/app/Services/RecomendationManager.php' => true,
+));
+
+return $coverage;

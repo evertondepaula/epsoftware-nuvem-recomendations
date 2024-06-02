@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker-compose up -d --build
+
+docker exec -d nuvem-php sh -c "sudo -u www-data /usr/local/bin/composer install && cp .env.example .env && php artisan key:generate --ansi && php vendor/bin/mongodb odm:schema:update"

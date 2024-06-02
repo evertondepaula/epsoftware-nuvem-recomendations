@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -d nuvem-php sh -c "php vendor/bin/phpunit"

@@ -1,0 +1,56 @@
+version: '3'
+services:
+  mongodb:
+    container_name: nuvem-mongo
+    image: 'mongo:latest'
+    networks:
+      nuvem:
+        ipv4_address: 198.168.145.2
+    ports:
+      - '27017:27017'
+    extra_hosts:
+      - '__MONGODB__:127.0.0.1'
+    volumes:
+      - './docker/mongo-data/:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  web:
+    container_name: nuvem-web
+    image: 'nginx:latest'
+    networks:
+      nuvem:
+        ipv4_address: 198.168.145.3
+    ports:
+      - '80:80'
+    extra_hosts:
+      - 'api.nuvem.local:127.0.0.1'
+      - 'docs.nuvem.local:127.0.0.1'
+      - 'tests.nuvem.local:127.0.0.1'
+    volumes:
+      - '.:/var/www/nuvem'
+      - './docker/nginx/conf.d:/etc/nginx/conf.d'
+    links:
+      - php
+  php:
+    container_name: nuvem-php
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    networks:
+      nuvem:
+        ipv4_address: 198.168.145.4
+    extra_hosts:
+      - 'api.nuvem.local:198.168.145.3'
+      - '__MONGODB__:198.168.145.2'
+    volumes:
+      - '.:/var/www/nuvem'
+    links:
+      - mongodb
+networks:
+  nuvem:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 198.168.145.0/24

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         forceCoversAnnotation="true"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app/Services</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="resources/views/tests/report" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="resources/views/tests/report/coverage.xml"/>
+        <log type="coverage-php" target="resources/views/tests/report/coverage.serialized"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="testdox-html" target="resources/views/tests/report/testdox.html"/>
+    </logging>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="MAIL_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="MONGO_AUTH_DATABASE" value="admin"/>
+        <env name="MONGO_HOST" value="__MONGODB__"/>
+        <env name="MONGO_PORT" value="27017"/>
+        <env name="MONGO_DATABASE" value="interview_testing"/>
+        <env name="MONGO_USERNAME" value="root"/>
+        <env name="MONGO_PASSWORD" value="root"/>
+    </php>
+</phpunit>

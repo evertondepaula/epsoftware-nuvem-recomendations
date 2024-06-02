@@ -1,0 +1,133 @@
+FORMAT: 1A
+
+# Introduction
+Esta api tem como responsabilidade armazenar vendas e recomendar items com base em pesquisa nos dados de vendas armazenados.
+
+## Architecture
+Os seguintes itens descrevem as tecnologias utilizadas
+
++ MongoDB 4.*
++ PHP 7.*
++ Nginx
+
+
+# Group Orders
+Recurso responsavel por armazenar vendas.
+
+## Create Orders [/orders]
+Recebe os dados de uma venda para serem armazenados.
+
+### Create Orders [POST]
+
+**AVAILABLE FIELDS**
+Param                      | Type     | Validation                                 | Description
+---------------------------|----------|--------------------------------------------|-----------------------------------------------------
+number                     | `integer`| `required|integer`                         | Número do venda
+created_at                 | `string` | `required|`<br>`date_format:"Y-m-d H:i:s"` | Data da venda
+items                      | `array`  | `required|array`                           | Lista de items da venda
+`items.*.`<br>`sku`        | `string` | `required|string`                          | Sku do item
+`items.*.`<br>`name`       | `string` | `required|string`                          | Nome do item
+`items.*.`<br>`quantity`   | `integer`| `required|`<br>`integer|min:1`             | Quantidade do item
+`items.*.`<br>`unit_value` | `float`  | `required|`<br>`numeric|min:0`             | Valor unitário do item
+`items.*.`<br>`created_at` | `string` | `required|`<br>`date_format:"Y-m-d H:i:s"` | Data de venda do item
+
++ Response 201 (application/json)
+    {
+        "data": {
+            "id": "<object-id>",
+            "number": <order-number>,
+            "total_value": <order-total-value>,
+            "created_at": {
+                "date": "2018-10-10 12:00:01.000000",
+                "timezone_type": 3,
+                "timezone": "UTC"
+            },
+            "items": [
+                {
+                    "sku": "<item-sku>",
+                    "name": "<item-name>",
+                    "quantity": <item-quantity>,
+                    "unit_value": <item-unit-value>,
+                    "total_value": <item-total-value>,
+                    "created_at": {
+                        "date": "2018-10-10 12:00:01.000000",
+                        "timezone_type": 3,
+                        "timezone": "UTC"
+                    }
+                }
+            ]
+        }
+    }
+
++ Response 422 (application/json)
+    {
+        "message": "The given data was invalid",
+        "errors": {
+            "number": [
+                "The number field is required."
+            ],
+            "created_at": [
+                "The created at field is required."
+            ],
+            "items": [
+                "The items field is required."
+            ],
+            "items.0.sku": [
+                "The items.0.sku field is required."
+            ],
+            "items.0.name": [
+                "The items.0.name field is required."
+            ],
+            "items.0.quantity": [
+                "The items.0.quantity field is required."
+            ],
+            "items.0.unit_value": [
+                "The items.0.unit_value field is required."
+            ],
+            "items.0.created_at": [
+                "The items.0.created_at field is required."
+            ]
+        }
+    }
+
+# Group Recomendations
+Recurso responsavel por recoemndar itens para compras.
+
+## Get Recomendations [/recomendations/{sku}]
+Recebe o SKU de um produto e com base nos dados de vendas armazenados recomenda itens relacionados.<br>
+Este recurso leva em consideração a data atual como base de pesquisa, ou seja, ao informar `months=2`, será pesquisado apenas as vendas entre os dois meses anteriores a data atual até a data atual.
+
+### Get Recomendations [GET]
+
+**AVAILABLE FIELDS**
+Param  | Type      | Validation                                 | Description
+-------|-----------|--------------------------------------------|-----------------------------------------------------
+months | `integer` | `nullable|integer|`<br>`min:2|max:12`      | Quantidade de meses a serem utilizados como base de pesquisa (utiliza-se do `created_at` da venda)
+limit  | `integer` | `nullable|integer|`<br>`min:1|max:10`      | Limit de recomendações a serem retornadas
+
++ Parameters
+    + sku: (string|required) - SKU do item que se deseja recomendações relacionadas.
+
++ Response 200 (application/json)
+    {
+        "data": [
+            {
+                "sku": "<item-sku>",
+                "name": "<item-name>",
+                "count": "<item-count>"
+            }
+        ]
+    }
+
++ Response 422 (application/json)
+    {
+        "message": "The given data was invalid",
+        "errors": {
+            "months": [
+                "The months field is not valid."
+            ],
+            "limit": [
+                "The limit field is not valid."
+            ]
+        }
+    }
